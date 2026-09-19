@@ -52,11 +52,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ufire/dsh-interviewer.git"
+    "url": "git+https://github.com/ufiredong/dsh-interviewer.git"
   },
   "bugs": {
-    "url": "https://github.com/ufire/dsh-interviewer/issues"
+    "url": "https://github.com/ufiredong/dsh-interviewer/issues"
   },
-  "homepage": "https://github.com/ufire/dsh-interviewer#readme",
+  "homepage": "https://github.com/ufiredong/dsh-interviewer#readme",
   "author": "ufire"
 }

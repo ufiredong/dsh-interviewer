@@ -53,7 +53,7 @@ DSH 市场里做「求职」的插件目前分两类，**都不是面试本身**
 ## 安装
 
 ```bash
-dsh plugin --profile web add github:ufire/dsh-interviewer
+dsh plugin --profile web add github:ufiredong/dsh-interviewer
 ```
 
 装完**重启 `dsh web`**（重启会断开当前会话，属正常）。重启后右下角出现「模拟面试」悬浮按钮。

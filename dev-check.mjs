@@ -606,6 +606,39 @@ if (skillMod) {
     console.log('  %s %s', ok ? '✓' : '✗', label);
   }
 
+  // ---- 发布一致性：README 的安装命令 vs package.json 的仓库地址 ----
+  //
+  // 这条是踩出来的：仓库实际在 ufiredong/dsh-interviewer，而 README 和 package.json
+  // 里先写成了 ufire/dsh-interviewer。**本机怎么测都是好的** —— 本地装插件走的是目录路径，
+  // 根本不经过 GitHub。但市场是从 README 抓安装命令给别人的，owner 写错那条命令直接 404，
+  // 而且装的人只会看到一句 "repository not found"，不知道是作者笔误。
+  // 这类错只有发出去才会暴露，所以在这里对一下。
+  const installOwner = (() => {
+    const m = /add\s+github:([^\s`'"]+)/.exec(read('README.md'));
+    return m ? m[1].replace(/\.git$/, '') : null;
+  })();
+  const repoOwner = (() => {
+    const url = (pkgForFiles.repository || {}).url || '';
+    const m = /github\.com\/([^/\s]+\/[^/\s#]+?)(?:\.git)?(?:#|$)/.exec(url);
+    return m ? m[1] : null;
+  })();
+
+  const consistencyChecks = [
+    ['README 里有 github: 形式的安装命令', installOwner !== null],
+    ['package.json 的 repository 指向 GitHub', repoOwner !== null],
+    ['★ 两处的 owner/repo 一致（不一致别人装不上）',
+      installOwner !== null && installOwner === repoOwner],
+  ];
+  for (const [label, ok] of consistencyChecks) {
+    if (!ok) {
+      problems.push('发布一致性：' + label
+        + '（README 安装命令 = ' + installOwner + '；package.json = ' + repoOwner + '）');
+    }
+    console.log('  %s %s', ok ? '✓' : '✗', label);
+  }
+  console.log('  · README 安装命令   github:%s', installOwner);
+  console.log('  · package.json 仓库  %s', repoOwner);
+
   // 技能真的能注册进 DSH 吗 —— 用桩 ctx 跑一遍 registerInterviewerSkill
   let registered = null;
   try {
