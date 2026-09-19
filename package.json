@@ -1,0 +1,62 @@
+{
+  "name": "dsh-interviewer",
+  "version": "0.3.0",
+  "description": "DSH 模拟面试技能 + 面板插件：真实模型扮演可切换风格的技术面试官，读简历逐层追问、按证据打分并给出薪资区间。自带完整面试 SOP（轮次/追问阶梯/评分模型），既注册为 skill，也提供可拖拽的面板 UI。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./skills/*": "./skills/*",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [],
+      "platform": "web"
+    }
+  },
+  "files": [
+    "lib",
+    "skills",
+    "docs",
+    "cordis.patch.yml",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.2",
+    "@deepseek-ai/dsh-llm": "^0.1.5-rc.2"
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "dsh-plugin",
+    "cordis",
+    "skill",
+    "interview",
+    "mock-interview",
+    "interviewer",
+    "模拟面试",
+    "面试",
+    "面试官",
+    "招聘"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ufire/dsh-interviewer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ufire/dsh-interviewer/issues"
+  },
+  "homepage": "https://github.com/ufire/dsh-interviewer#readme",
+  "author": "ufire"
+}

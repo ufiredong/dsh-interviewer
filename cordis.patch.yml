@@ -1,0 +1,15 @@
+# dsh-interviewer 插件行
+#
+# 这个文件是 package.json 里 `dsh.bundle.patch` 指向的层。装插件时：
+#
+#   dsh plugin --profile web add D:\ai\dsh-interviewer
+#
+# CLI 会把这个包接进 dsh.profile.bundles，profile 启动时再合并这个 patch，
+# 也就是下面这一条 insert。不需要手动改 profile 的任何文件。
+#
+# 主机侧（lib/index.js）是空的 —— 这是个纯 UI 插件，界面走 exports["./client"]，
+# 由 package.json 的 dsh.client 声明、浏览器加载。
+- insert:
+    - id: interviewer
+      name: 'dsh-interviewer'
+      config: {}

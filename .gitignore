@@ -1,0 +1,19 @@
+# 依赖与构建产物
+node_modules/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+.npm/
+.pnpm-store/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 本地临时验证产物（不该进版本库）
+.smoke/
+*.tgz
+.market-*.json
