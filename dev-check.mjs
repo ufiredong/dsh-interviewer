@@ -639,6 +639,22 @@ if (skillMod) {
   console.log('  · README 安装命令   github:%s', installOwner);
   console.log('  · package.json 仓库  %s', repoOwner);
 
+  // ---- README 引用的本地图片必须真的存在 ----
+  //
+  // 同一个道理：路径写错在本机毫无征兆，推到 GitHub 上就是一张破图，
+  // 而且只有点开仓库的人会看到 —— alt 文本写得再好也白写，那里只有个裂图标。
+  const imgRefs = [...read('README.md').matchAll(/!\[[^\]]*\]\(([^)\s]+)/g)]
+    .map((m) => m[1])
+    .filter((p) => !/^https?:/i.test(p));
+  if (imgRefs.length === 0) {
+    console.log('  · README 没有引用本地图片');
+  }
+  for (const rel of imgRefs) {
+    const ok = existsSync(join(HERE, rel));
+    if (!ok) problems.push('README 引用了不存在的图片：' + rel);
+    console.log('  %s README 图片 %s', ok ? '✓' : '✗', rel);
+  }
+
   // 技能真的能注册进 DSH 吗 —— 用桩 ctx 跑一遍 registerInterviewerSkill
   let registered = null;
   try {
