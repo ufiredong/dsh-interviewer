@@ -17,3 +17,9 @@ desktop.ini
 .smoke/
 *.tgz
 .market-*.json
+
+# 提交信息临时文件。教训：曾经用 .git-msg.tmp 传 commit message，
+# 结果它在 `git add -A` 时被一起提交了进去。
+.git-msg.tmp
+.git-commit-msg.txt
+*.tmp

@@ -57,6 +57,16 @@
 
 ### 变更
 
+- **README 重写为面向用户的公开文档**，新增「它能做什么」与「和其他插件的区别」两节。
+  后者基于对市场数据（7795 条插件）的实际扫描：做「求职」的插件目前只有
+  `recruiting-copilot`（招聘方视角）、`resume-reviser` / `dsh-resume-expert`
+  （改简历）和 `dsh-scout`（面试前尽调）—— **没有一个是把面试当主业的**。
+  所以那一节讲的是「产出是什么」的区别，不是功能多少。
+- README 开头两段由引用块 + 列表改为**连续散文**：市场抓 README 前约 1200 字符
+  做卡片简介时会把 markdown 压平成一行，列表符号和 `>` 会变成噪声。
+  新增 `docs/readme-preview.mjs` 预览该效果，并断言第一个标题之前无列表/引用/表格符号。
+- 顶部补上徽章（License / Node / DSH 版本要求）。刻意只用**静态**徽章 ——
+  仓库还没推、npm 还没发，动态徽章（stars、npm version、CI）此时都会是坏的。
 - 提示词装配从 `lib/index.js` 拆到 `lib/prompt.js`（纯 Node、不依赖 DSH），
   这样离线就能把提示词拼一遍做断言，而不是靠正则扫源码。
 - `inject` 增加 `'skills'`。

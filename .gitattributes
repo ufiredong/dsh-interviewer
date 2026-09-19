@@ -1,0 +1,13 @@
+# 统一换行符。
+#
+# 不加这个文件，Windows 上的 git 会在每次 add 时警告
+# "LF will be replaced by CRLF the next time Git touches it"，
+# 而且同一个文件在不同机器上 checkout 出来的换行符可能不一致 —— 对纯 JS 项目没有好处。
+#
+# 源码统一 LF（跨平台 + 和 DSH 生态里的其他插件一致）；
+# PowerShell 脚本保留 CRLF（Windows PowerShell 5.1 对 LF 脚本的处理有历史坑）。
+* text=auto eol=lf
+*.ps1 text eol=crlf
+*.png binary
+*.jpg binary
+*.webp binary
